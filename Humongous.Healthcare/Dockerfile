@@ -3,6 +3,7 @@ WORKDIR /app
 
 # Copy project file
 COPY ./Humongous.Healthcare.csproj .
+
 # Restore as distinct layer
 RUN dotnet restore
 

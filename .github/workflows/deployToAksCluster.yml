@@ -66,8 +66,8 @@ jobs:
       with:
         namespace: ${{ env.AKS_NAMESPACE }}
         manifests: |
-          manifests/deployment.yml
-          manifests/service.yml
+          Humongous.Healthcare/manifests/deployment.yml
+          Humongous.Healthcare/manifests/service.yml
         images: |
           ${{ env.CONTAINER_IMAGE }}
         imagepullsecrets: |
