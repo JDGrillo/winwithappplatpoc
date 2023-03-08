@@ -8,4 +8,3 @@ Before building the web application, it is necessary to define the following env
 
     - REACT_APP_API_URL - The endpoint URL of the Health Check tracking API
     - REACT_APP_API_KEY - The API key for accessing the Health Check tracking API
-
