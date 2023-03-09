@@ -65,7 +65,7 @@ export class AddHealthCheck extends Component {
                     <div>
                         <label>
                             Date:
-                            <input type="date" name="date" placeholder="Date" value={'2023-03-09'} />
+                            <input type="date" name="date" placeholder="Date" value={this.state.date} onChange={this.handleInput} />
                         </label>
                     </div>
                     <div>
