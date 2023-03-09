@@ -28,6 +28,6 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build Humongous.Healthcare.Tests/ --configuration Release --no-restore
       - name: Test
         run: dotnet test Humongous.Healthcare.Tests/ --no-restore --verbosity normal
