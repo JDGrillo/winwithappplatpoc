@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  uiTests:
 
     runs-on: ubuntu-latest
 
@@ -26,7 +26,7 @@ jobs:
         with:
           dotnet-version: '6.0.x'
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore Humongous.Healthcare.Tests/
       - name: Build
         run: dotnet build Humongous.Healthcare.Tests/ --configuration Release --no-restore
       - name: Test
