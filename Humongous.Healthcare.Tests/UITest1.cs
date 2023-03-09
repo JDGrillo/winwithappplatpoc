@@ -20,7 +20,9 @@ public class SuiteTests : IDisposable
     public SuiteTests()
     {
         var edgeOptions = new EdgeOptions();
-        edgeOptions.AddArguments("headless");
+        edgeOptions.AddArguments("--headless");
+        edgeOptions.AddArguments("--window-size=1920,1080");
+        edgeOptions.AddArguments("--start-maximized");
         driver = new EdgeDriver(edgeOptions);
         js = (IJavaScriptExecutor)driver;
         vars = new Dictionary<String, Object>();
@@ -29,24 +31,29 @@ public class SuiteTests : IDisposable
     {
         driver.Quit();
     }
-    //[Fact]
-    //public void Namejd()
-    //{
-    //    driver.Navigate().GoToUrl("https://workshopappjd.azurewebsites.net/");
-    //    driver.Manage().Window.Size = new System.Drawing.Size(1000, 600);
-    //    driver.FindElement(By.Id("name")).Click();
-    //    driver.FindElement(By.Id("name")).SendKeys("JD");
-    //    driver.FindElement(By.CssSelector(".btn")).Click();
-    //}
 
     [Fact]
-    public void Humongous()
-    {
+    public void Humongousagain() {
         driver.Navigate().GoToUrl("https://testing-accelerator-appsvc-jdg20230308.azurewebsites.net/");
-        driver.Manage().Window.Size = new System.Drawing.Size(1000, 600);
-        driver.FindElement(By.LinkText("Home")).Click();
+        driver.Manage().Window.Size = new System.Drawing.Size(1920, 1080);
         driver.FindElement(By.LinkText("Health Checks")).Click();
-        driver.FindElement(By.Id("tabelLabel")).Click();
-        Assert.Equal(driver.FindElement(By.Id("tabelLabel")).Text, "Health Checks");
+        {
+        WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(10));
+        wait.Until(driver => driver.FindElements(By.CssSelector("tr:nth-child(1) > td:nth-child(4)")).Count > 0);
+        }
+        Assert.Equal(driver.FindElement(By.CssSelector("tr:nth-child(1) > td:nth-child(4)")).Text, "I feel healthy");
+        driver.Navigate().GoToUrl("https://testing-accelerator-appsvc-jdg20230308.azurewebsites.net/submit-health-check");
+        driver.FindElement(By.Name("patientid")).Click();
+        driver.FindElement(By.Name("patientid")).SendKeys("22");
+        driver.FindElement(By.Name("healthstatus")).Click();
+        driver.FindElement(By.Name("healthstatus")).SendKeys("good");
+        Assert.Equal(driver.FindElement(By.CssSelector("button:nth-child(6)")).Text, "Submit");
+        driver.FindElement(By.XPath("//button[@type=\'submit\']")).Click();
+        driver.Navigate().GoToUrl("https://testing-accelerator-appsvc-jdg20230308.azurewebsites.net/health-checks");
+        {
+        WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(10));
+        wait.Until(driver => driver.FindElements(By.CssSelector("tr:nth-child(4) > td:nth-child(4)")).Count > 0);
+        }
+        Assert.Equal(driver.FindElement(By.CssSelector("tr:nth-child(4) > td:nth-child(4)")).Text, "good");
     }
 }

@@ -29,7 +29,6 @@ export class AddHealthCheck extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Test");
         this.createHealthCheck();
     }
     
@@ -66,7 +65,7 @@ export class AddHealthCheck extends Component {
                     <div>
                         <label>
                             Date:
-                            <input type="date" name="date" placeholder="Date" value={this.state.date} onChange={this.handleInput} />
+                            <input type="date" name="date" placeholder="Date" value={'2023-03-09'} />
                         </label>
                     </div>
                     <div>
