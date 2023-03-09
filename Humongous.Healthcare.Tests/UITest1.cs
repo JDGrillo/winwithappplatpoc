@@ -47,6 +47,6 @@ public class SuiteTests : IDisposable
         driver.FindElement(By.LinkText("Home")).Click();
         driver.FindElement(By.LinkText("Health Checks")).Click();
         driver.FindElement(By.Id("tabelLabel")).Click();
-        Assert.Equal(driver.FindElement(By.Id("tabelLabel")).Text, "Health Checkzz");
+        Assert.Equal(driver.FindElement(By.Id("tabelLabel")).Text, "Health Checks");
     }
 }
